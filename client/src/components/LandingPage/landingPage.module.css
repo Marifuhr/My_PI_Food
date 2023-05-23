@@ -1,0 +1,41 @@
+body{
+    margin:0;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(69, 61, 61);
+    position: relative;
+}
+video {
+    position:fixed;
+    max-width: 90%;
+    /* min-height: 100%; */
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 2;
+}
+
+.overlay {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.575);
+}
+.title{
+    z-index: 2000;
+    position: fixed;
+    top: 8%;
+    left:9%;
+    color: #d5987e;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 14px; 
+   
+}
+
+

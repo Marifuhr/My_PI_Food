@@ -12,7 +12,7 @@ const router = Router();
 // GET /recipes?name="...":
 // Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
 // Si no existe ninguna receta mostrar un mensaje adecuado
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
     const { name } = req.query;
     try {
         let AllRecipes = await get_AllRecipes();
@@ -26,6 +26,7 @@ router.get('/', async (req, res, next) => {
                         title: r.title,
                         image: r.image,
                         summary: r.summary,
+                        score: r.score,
                         healthScore: r.healthScore,
                         steps: r.steps,
                         diets: r.diets ? r.diets : r.diets.map(r => r.name)
@@ -42,6 +43,7 @@ router.get('/', async (req, res, next) => {
                     title: r.title,
                     image: r.image,
                     summary: r.summary,
+                    score: r.score,
                     healthScore: r.healthScore,
                     steps: r.steps,
                     diets: r.diets ? r.diets : r.diets.map(r => r.name),
@@ -51,7 +53,7 @@ router.get('/', async (req, res, next) => {
         }
 
     } catch (err) {
-        next(err);
+        return res.status(500).json({ error: err.message });
     }
 });
 
@@ -59,7 +61,7 @@ router.get('/', async (req, res, next) => {
 // Obtener el detalle de una receta en particular
 // Debe traer solo los datos pedidos en la ruta de detalle de receta
 // Incluir los tipos de dieta asociados
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params;
     let validate = id.includes("-"); // Si tiene el guion es pq se encuentra en base de datos.
     try {
@@ -71,18 +73,20 @@ router.get('/:id', async (req, res, next) => {
             return res.status(200).send(recipeAPI);
         }
     } catch (err) {
-        next(err);
+       return res.status(500).json({error:err.message});
     }
 });
 
 
-router.post('/', async (req, res, next) => {
-    const { title, summary, healthScore, image, steps, diets } = req.body;
+
+router.post('/', async (req, res) => {
+    const { title, summary, score, healthScore, image, steps, diets } = req.body;
     try {
         const newRecipe = await Recipe.create({
             title,
             image,
             summary,
+            score,
             healthScore,
             steps,
         });
@@ -115,7 +119,7 @@ router.post('/', async (req, res, next) => {
 
         res.status(200).send(newRecipe);
     } catch (err) {
-        next(err);
+        return res.status(500).json({ error: err.message });
     }
 })
 

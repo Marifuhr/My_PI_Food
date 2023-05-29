@@ -1,25 +1,7 @@
-// import { GET_FOOD } from "./actions"
-
-// const initialState = {
-//     food: [],
-//     allFood: []
-// }
-
-// export default function rootReducer(state = initialState, action) {
-//     switch (action.type) {
-//         case GET_FOOD:
-//             return {
-//                 ...state,
-//                 food: action.payload,
-//                 allFood: action.payload
-//             }
-
-//         default: return state;
-//     }
-// }
 
 
 
+import { GET_FOOD, GET_DIETS, GET_RECIPE_BY_NAME, GET_RECIPE_DETAILS, CREATE_RECIPE, FILTER_BY_TYPE_DIET, ORDER_BY_ALPHABET, ORDER_BY_SCORE, CLEAR_DETAIL } from "./actions";
 
 const initialState = {
     allRecipes: [],
@@ -28,96 +10,100 @@ const initialState = {
     recipeDetails: [],
 }
 
+
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
-
-        case "GET_FOOD":
+        case GET_FOOD:
             return {
                 ...state,
                 showedRecipes: action.payload,
                 allRecipes: action.payload,
             };
 
-        case "GET_RECIPE_BY_NAME":
+        case GET_RECIPE_BY_NAME:
             return {
                 ...state,
                 showedRecipes: action.payload,
             };
 
-        case "GET_RECIPE_DETAILS":
+        case GET_RECIPE_DETAILS:
             return {
                 ...state,
                 recipeDetails: action.payload,
             };
 
-        case "GET_DIETS":
+        case GET_DIETS:
             return {
                 ...state,
                 diets: action.payload,
             };
 
-        case "CREATE_RECIPE":
+        case CREATE_RECIPE:
             return {
                 ...state,
             };
 
-        case "FILTER_BY_TYPE_DIET":
+        case FILTER_BY_TYPE_DIET:
             const all = state.allRecipes;
-            const filter = action.payload === 'all' ? all : all.filter(r => r.diets.find(d => d.name === action.payload || d === action.payload))
+            const filter =
+                action.payload === "all"
+                    ? all
+                    : all.filter((r) =>
+                        r.diets.find(
+                            (d) => d.name === action.payload || d === action.payload
+                        )
+                    );
             return {
                 ...state,
-                showedRecipes: filter
-            }
+                showedRecipes: filter,
+            };
 
-
-
-        case "ORDER_BY_ALPHABET":
+        case ORDER_BY_ALPHABET:
             let sortByAlphabet = [...state.showedRecipes];
-            sortByAlphabet.sort(function (a, b) {
-                const nameA = a.name && a.name.toLowerCase();
-                const nameB = b.name && b.name.toLowerCase();
-                if (action.payload === 'atoz') {
-                    if (nameA < nameB) return -1;
-                    if (nameA > nameB) return 1;
-                } else {
-                    if (nameA > nameB) return -1;
-                    if (nameA < nameB) return 1;
-                }
-                return 0;
-            });
+            sortByAlphabet =
+                action.payload === "atoz"  //(de la A a la Z)
+                    ? state.showedRecipes.sort(function (a, b) {
+                        if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+                        if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+                        return 0;
+                    })
+                    : state.showedRecipes.sort(function (a, b) {
+                        if (a.title.toLowerCase() < b.title.toLowerCase()) return 1;
+                        if (a.title.toLowerCase() > b.title.toLowerCase()) return -1;
+                        return 0;
+                    });
             return {
                 ...state,
-                showedRecipes: sortByAlphabet}
+                showedRecipes: sortByAlphabet,
+            };
 
-        case "ORDER_BY_SCORE":
+        case ORDER_BY_SCORE: 
             let sortedByScore = [...state.showedRecipes];
-            console.log(sortedByScore)
-            sortedByScore = action.payload === 'asc' ?
-                state.showedRecipes.sort(function (a, b) {
-                    if (a.healthScore > b.healthScore) return 1;
-                    if (a.healthScore < b.healthScore) return -1;
-                    return 0;
-                }) :
-                state.showedRecipes.sort(function (a, b) {
-                    if (a.healthScore < b.healthScore) return 1;
-                    if (a.healthScore > b.healthScore) return -1;
-                    return 0;
-                });
+            console.log(sortedByScore);
+            sortedByScore =
+                action.payload === "asc"
+                    ? state.showedRecipes.sort(function (a, b) {
+                        if (a.healthScore > b.healthScore) return 1;
+                        if (a.healthScore < b.healthScore) return -1;
+                        return 0;
+                    })
+                    : state.showedRecipes.sort(function (a, b) {
+                        if (a.healthScore < b.healthScore) return 1;
+                        if (a.healthScore > b.healthScore) return -1;
+                        return 0;
+                    });
             return {
                 ...state,
                 showedRecipes: sortedByScore,
             };
-        case "CLEAR_DETAIL":
+        case CLEAR_DETAIL:
             return {
                 ...state,
-                recipeDetails: []
-            }
+                recipeDetails: [],
+            };
         default:
             return state;
     }
 }
-
-
-
 
 

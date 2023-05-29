@@ -14,10 +14,11 @@ import {
 } from "../redux/actions"
 import img1 from '../styles/Star.png'
 import img2 from '../styles/Star2.png'
+// import logo from 
 let prevId = 1;
 
 function Home(props) {
-    console.log(props.showedRecipes);
+
 
     const [/* order */, setOrder] = useState('')
 
@@ -36,7 +37,7 @@ function Home(props) {
         props.getFood();
         // La siguiente línea es para quitar un warning molesto de la consola.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.getRecipes]);
+    }, [props.getFood]);
 
     let handleClick = (e) => {
         e.preventDefault();
@@ -83,9 +84,12 @@ function Home(props) {
                     </Link>
                 </div>
 
-                
+
                 <div className={style.box}>
-                    <select defaultValue={'all'} name="diets" onChange={e => handleFilterByTypeDiet(e)}>
+                    <select
+                        defaultValue={'all'}
+                        name="diets"
+                        onChange={e => handleFilterByTypeDiet(e)}>
                         <option value="all">Filter by type of diet</option>
                         <option value="gluten free">Gluten Free</option>
                         <option value="ketogenic">Ketogenic</option>
@@ -103,18 +107,27 @@ function Home(props) {
                     </select>
                 </div>
 
-                
+
                 <div className={style.box}>
-                    <select defaultValue={'DEFAULT'} name="alphabetical" onChange={e => handleOrderByAlphabet(e)}>
-                        <option value="DEFAULT" disabled>Order alphabetically</option>
+                    <select
+                        defaultValue={"DEFAULT"}
+                        name="alphabetical"
+                        onChange={(e) => handleOrderByAlphabet(e)}
+                    >
+                        <option value="DEFAULT" disabled>
+                            Order alphabetically
+                        </option>
                         <option value="atoz">A to Z</option>
                         <option value="ztoa">Z to A</option>
                     </select>
                 </div>
 
-                
+
                 <div className={style.box}>
-                    <select defaultValue={'DEFAULT'} name="numerical" onChange={e => handleOrderByScore(e)}>
+                    <select
+                        defaultValue={'DEFAULT'}
+                        name="numerical"
+                        onChange={e => handleOrderByScore(e)}>
                         <option value="DEFAULT" disabled>Order by Score</option>
                         <option value="asc">Min to Max</option>
                         <option value="desc">Max to Min</option>
@@ -125,7 +138,7 @@ function Home(props) {
 
             <hr></hr>
 
-            
+
             <div className={style.ref}>
                 <div>
                     <p className={style.starRef}>Score</p>
@@ -175,8 +188,12 @@ function Home(props) {
                             <Pagination recipesPage={recipesPage} showedRecipes={props.showedRecipes.length} paged={paged} setPage={setPage} page={page}></Pagination>
                             <span className={style.actual}> {page} of {Math.ceil(props.showedRecipes.length / recipesPage)} </span>
                         </div> :
-                        <div><span className={style.actual}> {page} of {Math.ceil(props.showedRecipes.length / recipesPage)} </span></div>
+                        <div><span className={style.actual}> {page} of {Math.ceil(props.showedRecipes.length / recipesPage)} </span>
+                        
+                        
+                        </div>
                 }
+             
 
             </div>
         </div>

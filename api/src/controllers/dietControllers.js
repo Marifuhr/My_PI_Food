@@ -1,7 +1,8 @@
 const { Diets } = require("../db");
 const axios = require("axios");
-// const postDiet = require("../handlers/handlerPostDiet");
 const { API_KEY, URL_SPOONACULAR } = process.env;
+
+
 
 const getTypesDiets = async () => {
     /** obtener en un array todos los tipos de dietas existentes,
@@ -59,4 +60,5 @@ const postDiet = async (dataArr) => {
 };
 module.exports = {
     getTypesDiets,
+   
 };

@@ -6,7 +6,7 @@ const {
 } = require('../controllers/recipeControllers');
 const { Recipe, Diets } = require("../db")
 const { Op } = require("sequelize")
-const { types } = require("../controllers/dietControllers")
+const { typesDiets } = require("../controllers/dietControllers")
 const router = Router();
 
 // GET /recipes?name="...":
@@ -73,7 +73,7 @@ router.get('/:id', async (req, res) => {
             return res.status(200).send(recipeAPI);
         }
     } catch (err) {
-       return res.status(500).json({error:err.message});
+        return res.status(500).json({ error: err.message });
     }
 });
 
@@ -82,6 +82,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const { title, summary, score, healthScore, image, steps, diets } = req.body;
     try {
+       
         const newRecipe = await Recipe.create({
             title,
             image,
@@ -90,33 +91,18 @@ router.post('/', async (req, res) => {
             healthScore,
             steps,
         });
-
-        const dietNames = Array.isArray(diets) ? diets : [diets];
+      
         const dietDB = await Diets.findAll({
             where: {
                 name: {
-                    [Op.in]: dietNames,
+                    [Op.in]: diets,
                 },
             },
         });
-        await newRecipe.addDiets(dietDB);
-
-        for (const dietName of dietNames) {
-            const validate = types.includes(dietName);
-            if (!validate) {
-                const existingDiet = await Diets.findOne({
-                    where: {
-                        name: dietName,
-                    },
-                });
-                if (!existingDiet) {
-                    const newDiet = await Diets.create({ name: dietName });
-                    await newRecipe.addDiets(newDiet);
-                    types.push(dietName);
-                }
-            }
-        }
-
+        
+        const ids = dietDB.map(el => el.id)
+        console.log(ids);
+        await newRecipe.addDiets(ids)
         res.status(200).send(newRecipe);
     } catch (err) {
         return res.status(500).json({ error: err.message });

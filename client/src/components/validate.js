@@ -2,7 +2,8 @@ let regexName = /^[a-zA-Z\s]+$/;
 
 
 
-export const  validate = (input) => {
+
+export const validate = (input) => {
     let errors = {};
 
     // Name obligatorio.
@@ -10,7 +11,7 @@ export const  validate = (input) => {
         errors.title = "Name cannot be null."
     }
     // Solo letras
-    if (regexName.test(input.title)) {
+    if (!regexName.test(input.title)) {
         errors.title = "Name invalid."
     }
     // Summary obligatorio.
@@ -25,18 +26,12 @@ export const  validate = (input) => {
     if (input.healthScore < 1 || input.healthScore > 100) {
         errors.healthScore = "The health score is 1 - 100."
     }
-    
+
     // Obligatorio los pasos.
     if (!input.steps) {
         errors.steps = "Enter the recipe steps."
     }
-    // Obligatorio tipo de dieta.
-    if (!input.diets.length) {
-        errors.diets = "Select at least one diet."
-    }
-    if (regexName.test(input.diets)) {
-        errors.diet = "Diet invalid."
-    }
+    
 
     return errors;
 }

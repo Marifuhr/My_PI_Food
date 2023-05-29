@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from './pagination.module.css'
+import {Link} from 'react-router-dom'
 
 export default function Pagination({ recipesPage, showedRecipes, paged, setPage, page }) {
 
@@ -27,6 +28,8 @@ export default function Pagination({ recipesPage, showedRecipes, paged, setPage,
 
     return (
         <div className={style.general}>
+            <a href="https://github.com/Marifuhr" target="_blank">GitHub</a>
+            
             <button className={style.bn} onClick={back} disabled={page <= 1}> ⮜ </button>
             {
                 <nav>

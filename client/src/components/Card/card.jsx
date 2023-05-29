@@ -34,9 +34,9 @@ export default function Card(props) {
                     <h3 className={style.h3}>Types of diets: </h3>
                     {
                         diets?.map(d => {
-                            if (d.hasOwnProperty('title')) {
+                            if (d.hasOwnProperty('name')) {
                                 return (
-                                    <p className={style.p1} key={prevId++}>- {d.title[0].toUpperCase() + d.title.slice(1)} </p>
+                                    <p className={style.p1} key={prevId++}>- {d.name[0].toUpperCase() + d.name.slice(1)} </p>
                                 )
                             } else {
                                 return (

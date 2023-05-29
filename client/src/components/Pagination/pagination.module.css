@@ -16,10 +16,11 @@
 .btn {
     color: white;
     border: none;
-    background-color: black;
+    background-color: rgb(215, 189, 189);
     font-size: 20px;
     margin: 5px;
     border-radius: 3px;
+    box-shadow: 2px 5px rgb(98, 95, 95);
 }
 
 .btn:hover {
@@ -30,13 +31,15 @@
 .bn {
     color: white;
     border: none;
-    background-color: black;
+    background-color:rgb(215, 189, 189);
     font-size: 20px;
     margin-left: 20px;
     margin-right: -20px;
     width: 40px;
     height: 40px;
     margin-top: 10px;
+    box-shadow: 2px 5px rgb(98, 95, 95);
+    
 }
 
 .bn:hover {

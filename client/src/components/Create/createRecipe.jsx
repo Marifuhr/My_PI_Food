@@ -1,61 +1,87 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { Link, /* Redirect */ useHistory } from "react-router-dom"
 import { createRecipe, getDiets } from "../redux/actions"
 import style from './createRecipe.module.css';
-import {validate} from '../validate'
+import { validate } from '../validate'
 
 function CreateRecipe(props) {
     const history = useHistory();
     const [errors, setErrors] = useState({});
+    const dietas = useSelector(state => state.diets)
+    const dispatch = useDispatch();
+    const [tipos, setTipos] = useState([])
+
 
     const [input, setInput] = useState({
-        name: "",
+        title: "",
         summary: "",
         score: "",
         healthScore: "",
         image: "",
         steps: "",
         diets: [],
-        diet: "",
     })
 
     useEffect(() => {
-        props.getDiets()
-     
+        dispatch(getDiets())
+
     }, []);
 
     let handleChange = (e) => {
+        const { name, value } = e.target
         e.preventDefault();
         setInput({
             ...input,
-            [e.target.name]: e.target.value,
-        }) 
-            
+            [name]: value,
+            diets: tipos,
+        })
+        
         setErrors(validate({
-            ...input,
-            [e.target.name]: e.target.value,
+                ...input,
+                [e.target.name]: e.target.value,
             }));
     }
+    console.log(errors);
+        
+        let handleSelect = (e) => {
+            const { value } = e.target
+            if (!tipos.includes(value)) {
+            setTipos([...tipos, value])
+        }
+    }
+    useEffect(() => {
+        setInput({
+            ...input,
+            diets: tipos,
+        })
+   
+    }, [tipos]);
+   
+
+    let handleClick = (data) => {
+        let indiceSelect = tipos.indexOf(data)
+        if (indiceSelect !== -1) {
+            const info = tipos.filter((el, index)=> index !== indiceSelect)
+            setTipos(info)
+        }
+} 
 
     let handleSubmit = (e) => {
         e.preventDefault();
 
         if (Object.keys(errors).length === 0 && input.name !== "" && input.summary !== "") {
-            if (input.diet) {
-                input.diets.push(input.diet.toLowerCase());
-            }
-           
+
+
             props.createRecipe(input);
             setInput({
-                name: "",
+                title: "",
                 summary: "",
                 score: "",
                 healthScore: "",
                 image: "",
                 steps: "",
                 diets: [],
-                diet: "",
             })
             history.push('/home')
         } else {
@@ -63,26 +89,6 @@ function CreateRecipe(props) {
         }
     }
 
-    let handleCheck = (e) => {
-        let newArray = input.diets;
-        let find = newArray.indexOf(e.target.value);
-
-        if (find >= 0) {
-            newArray.splice(find, 1)
-        } else {
-            newArray.push(e.target.value)
-        }
-
-        setInput({
-            ...input,
-            diets: newArray
-        });
-
-        setErrors(validate({
-            ...input,
-            [e.target.name]: e.target.value,
-        }));
-    }
 
     return (
         <div>
@@ -106,11 +112,11 @@ function CreateRecipe(props) {
                     <div><label>Name: </label></div>
                     <input
                         type={"text"}
-                        name={"name"}
+                        name={"title"}
                         value={input.title}
                         onChange={e => handleChange(e)}
                     ></input>
-                    {!errors.name ? null : <p className={style.err}>{errors.name}</p>}
+                    {!errors.title ? null : <p className={style.err}>{errors.title}</p>}
                 </div>
 
                 <div>
@@ -173,28 +179,28 @@ function CreateRecipe(props) {
                     {!errors.steps ? null : <p className={style.err}>{errors.steps}</p>}
                 </div>
 
-                <div>
-                    <div className={style.txt}><label>Types of diet: </label></div>
-                    <br></br>
-                    {props.diets.slice(0, 13).map(d => {
-                        return (
-                            <div key={d} className={style.list}>
-                                <label> {d[0].toUpperCase() + d.slice(1)}</label>
-                                <input type="checkbox" name={d} value={d} onChange={e => handleCheck(e)} />
-                            </div>
-                        )
-                    })}
-                    {!errors.diets ? null : <p className={style.err}>{errors.diets}</p>}
-                </div>
+
 
                 <div>
                     <div className={style.txt}>
-                        <label>ADD Diet: </label>
+                        <label>ADD DIET</label>
+                        <select
+                            type={"text"}
+                            name={"diet"}
+                            onChange={e => handleSelect(e)}>
+                            {
+                                dietas.map(el => <option key={el.id} value={el.name}>{el.name}</option>)
+                            }
+                        </select>
+                        {/* {!errors.diets ? null : <p className={style.err}>{errors.diets}</p>} */}
                     </div>
-                    <div>
-                        <input type="text" name={"diet"} value={input.diets} onChange={e => handleChange(e)}></input>
-                    </div>
-                    {!errors.diets ? null : <p className={style.err}>{errors.diets}</p>}
+                    <ul>
+                    {
+                            tipos.map(el => <li key={el}>{el}<button
+                                type="button"
+                                onClick={() => handleClick(el)}>X</button></li>)
+                    }
+                    </ul>
                 </div>
 
                 <br></br>

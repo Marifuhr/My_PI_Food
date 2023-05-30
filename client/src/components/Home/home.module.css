@@ -302,4 +302,8 @@ hr {
         margin-left: 50px;
         margin-right: 50px;
     }
+    .derechos{
+        font-size: 35px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
 }

@@ -1,12 +1,14 @@
 .general {
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     color: white;
+    
 }
 
 .ul {
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
+    margin-left: 1px;
 }
 
 .list {
@@ -19,6 +21,7 @@
     background-color: rgb(215, 189, 189);
     font-size: 20px;
     margin: 5px;
+    margin-left: 20px;
     border-radius: 3px;
     box-shadow: 2px 5px rgb(98, 95, 95);
 }
@@ -34,7 +37,7 @@
     background-color:rgb(215, 189, 189);
     font-size: 20px;
     margin-left: 20px;
-    margin-right: -20px;
+    margin-right: -10px;
     width: 40px;
     height: 40px;
     margin-top: 10px;
@@ -67,7 +70,7 @@
         background-color: black;
         font-size: 15px;
         margin-left: 20px;
-        margin-right: -20px;
+        margin-right: auto;
         width: 30px;
         height: 30px;
         margin-top: 12px;
@@ -99,4 +102,17 @@
         height: 20px;
         margin-top: 18px;
     }
+   .git{
+width: 80px;
+    height: 80px;
+   }
+   .git:hover{
+    transition: all 0.8s ease-out;
+   }
+   
+   .linke{
+    width: 60px;
+        height: 60px;
+   }
+   
 }

@@ -91,6 +91,7 @@ router.post('/', async (req, res) => {
             healthScore,
             steps,
         });
+        console.log(newRecipe);
       
         const dietDB = await Diets.findAll({
             where: {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import style from './pagination.module.css'
-import {Link} from 'react-router-dom'
+import logo from '../styles/github.png'
+import linke from '../styles/linkedin.png'
+
 
 export default function Pagination({ recipesPage, showedRecipes, paged, setPage, page }) {
 
@@ -28,7 +30,9 @@ export default function Pagination({ recipesPage, showedRecipes, paged, setPage,
 
     return (
         <div className={style.general}>
-            <a href="https://github.com/Marifuhr" target="_blank">GitHub</a>
+            <a href="https://github.com/Marifuhr"
+                target="_blank">
+                <img className={style.git} src={logo} alt="Login"></img></a>
             
             <button className={style.bn} onClick={back} disabled={page <= 1}> ⮜ </button>
             {
@@ -43,6 +47,10 @@ export default function Pagination({ recipesPage, showedRecipes, paged, setPage,
                 </nav>
             }
             <button className={style.bn} onClick={next} disabled={page === pages.length}> ⮞ </button>
+            <a href="linkedin.com/in/maria-rosa-fuhr-78b839201"
+                target="_blank">
+                <img className={style.linke} src={linke} alt="Linkedin"></img></a>
+
         </div>
     )
 }

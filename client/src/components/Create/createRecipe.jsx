@@ -36,17 +36,17 @@ function CreateRecipe(props) {
             [name]: value,
             diets: tipos,
         })
-        
+
         setErrors(validate({
-                ...input,
-                [e.target.name]: e.target.value,
-            }));
+            ...input,
+            [e.target.name]: e.target.value,
+        }));
     }
     console.log(errors);
-        
-        let handleSelect = (e) => {
-            const { value } = e.target
-            if (!tipos.includes(value)) {
+
+    let handleSelect = (e) => {
+        const { value } = e.target
+        if (!tipos.includes(value)) {
             setTipos([...tipos, value])
         }
     }
@@ -55,17 +55,17 @@ function CreateRecipe(props) {
             ...input,
             diets: tipos,
         })
-   
+
     }, [tipos]);
-   
+
 
     let handleClick = (data) => {
         let indiceSelect = tipos.indexOf(data)
         if (indiceSelect !== -1) {
-            const info = tipos.filter((el, index)=> index !== indiceSelect)
+            const info = tipos.filter((el, index) => index !== indiceSelect)
             setTipos(info)
         }
-} 
+    }
 
     let handleSubmit = (e) => {
         e.preventDefault();
@@ -195,11 +195,11 @@ function CreateRecipe(props) {
                         {/* {!errors.diets ? null : <p className={style.err}>{errors.diets}</p>} */}
                     </div>
                     <ul>
-                    {
+                        {
                             tipos.map(el => <li key={el}>{el}<button
                                 type="button"
                                 onClick={() => handleClick(el)}>X</button></li>)
-                    }
+                        }
                     </ul>
                 </div>
 

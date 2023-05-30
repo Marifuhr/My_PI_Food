@@ -1,8 +1,5 @@
 let regexName = /^[a-zA-Z\s]+$/;
 
-
-
-
 export const validate = (input) => {
     let errors = {};
 

@@ -10,7 +10,7 @@ import {
     getFood,
     filterByTypeDiet,
     orderByAlphabet,
-    orderByScore
+    orderByScore,
 } from "../redux/actions"
 import img1 from '../styles/Star.png'
 import img2 from '../styles/Star2.png'

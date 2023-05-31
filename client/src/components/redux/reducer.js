@@ -1,7 +1,7 @@
 
 
 
-import { GET_FOOD, GET_DIETS, GET_RECIPE_BY_NAME, GET_RECIPE_DETAILS, CREATE_RECIPE, FILTER_BY_TYPE_DIET, ORDER_BY_ALPHABET, ORDER_BY_SCORE, CLEAR_DETAIL } from "./actions";
+import { GET_FOOD, GET_DIETS, GET_RECIPE_BY_NAME, GET_RECIPE_DETAILS, CREATE_RECIPE, FILTER_BY_TYPE_DIET, ORDER_BY_ALPHABET, FILTER_BY_SOURCE, ORDER_BY_SCORE, CLEAR_DETAIL } from "./actions";
 
 const initialState = {
     allRecipes: [],
@@ -76,6 +76,13 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 showedRecipes: sortByAlphabet,
             };
+
+        case FILTER_BY_SOURCE:
+            return {
+                ...state,
+                allrecipes: action.payload,
+            }
+
 
         case ORDER_BY_SCORE: 
             let sortedByScore = [...state.showedRecipes];

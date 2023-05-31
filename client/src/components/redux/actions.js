@@ -9,6 +9,7 @@ export const FILTER_BY_TYPE_DIET = "FILTER_BY_TYPE_DIET";
 export const ORDER_BY_ALPHABET = "ORDER_BY_ALPHABET";
 export const ORDER_BY_SCORE = "ORDER_BY_SCORE";
 export const CLEAR_DETAIL = "CLEAR_DETAIL";
+export const FILTER_BY_SOURCE = "FILTER_BY_SOURCE";
 
 const URL = "http://localhost:3001";
 
@@ -92,6 +93,10 @@ export function orderByAlphabet(payload) {
         type: ORDER_BY_ALPHABET,
         payload,
     };
+}
+
+export function filterBySource() {
+    
 }
 
 export function orderByScore(payload) {

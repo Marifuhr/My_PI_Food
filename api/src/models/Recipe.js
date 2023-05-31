@@ -31,6 +31,7 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.STRING,
     },
+    
   },{ timestamps: false });  
 };
 

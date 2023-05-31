@@ -41,7 +41,7 @@ function CreateRecipe(props) {
             [e.target.name]: e.target.value,
         }));
     }
-    console.log(errors);
+    
 
     let handleSelect = (e) => {
         const { value } = e.target

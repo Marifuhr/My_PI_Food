@@ -78,10 +78,21 @@ export default function rootReducer(state = initialState, action) {
             };
 
         case FILTER_BY_SOURCE:
+            const { id } = action;
+            //const isNumeric = !isNaN(id);
+            const allRecipes1 = state.allRecipes;
+            const statusFiltered2 =
+                action.payload === "Filter by Source"
+                    ? allRecipes1.filter((el) => typeof el.id === "string")
+                    : allRecipes1.filter((el) => typeof el.id !== "number");
+            //console.log(statusFiltered2);
             return {
                 ...state,
-                allrecipes: action.payload,
-            }
+                showedRecipes:
+                    action.payload === "api"
+                        ? allRecipes1.filter((el) => typeof el.id === "number")
+                        : statusFiltered2,
+            };
 
 
         case ORDER_BY_SCORE: 

@@ -33,7 +33,7 @@ export default function Pagination({ recipesPage, showedRecipes, paged, setPage,
             <a href="https://github.com/Marifuhr"
                 target="blank">
                 <img className={style.git} src={logo} alt="Login"></img></a>
-            
+
             <button className={style.bn} onClick={back} disabled={page <= 1}> ⮜ </button>
             {
                 <nav>
@@ -47,7 +47,7 @@ export default function Pagination({ recipesPage, showedRecipes, paged, setPage,
                 </nav>
             }
             <button className={style.bn} onClick={next} disabled={page === pages.length}> ⮞ </button>
-            <a href="linkedin.com/in/maria-rosa-fuhr-78b839201"
+            <a href="https://linkedin.com/in/maria-rosa-fuhr-78b839201"
                 target="blank">
                 <img className={style.linke} src={linke} alt="Linkedin"></img></a>
 

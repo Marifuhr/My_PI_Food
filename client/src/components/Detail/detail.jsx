@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getRecipeDetails } from './../redux/actions';
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ export default function Detail() {
     const receta = useSelector((state) => state.recipeDetails)
     const dispatch = useDispatch();
     const { id } = useParams();
-    const [estado, setEstado] = useState(false)
+    // const [estado, setEstado] = useState(false)
 
     const dieta = () => {
         if (id.includes("-")) {
@@ -27,16 +27,16 @@ export default function Detail() {
         <div className={style.div}>
             <Link to="/home" className={style.btn}>Back</Link>
             <>
-            <h1 className={style.title}>{receta.title}</h1>
-            <p className={style.recipe} id="recipe" dangerouslySetInnerHTML={{ __html: receta.summary }}></p>
-            <img className={style.img} src={receta.image} alt={receta.title} />
+                <h1 className={style.title}>{receta.title}</h1>
+                <p className={style.recipe} id="recipe" dangerouslySetInnerHTML={{ __html: receta.summary }}></p>
+                <img className={style.img} src={receta.image} alt={receta.title} />
             </>
-                <h2 className={style.health}>{receta.healthScore}</h2>
+            <h2 className={style.health}>{receta.healthScore}</h2>
             <p className={style.recipe}>{receta.steps}</p>
             {
                 dieta()
-        }
-           
+            }
+
         </div>
     )
 }   

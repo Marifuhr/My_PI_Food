@@ -25,8 +25,7 @@ function CreateRecipe(props) {
 
     useEffect(() => {
         dispatch(getDiets())
-
-    }, []);
+    }, [dispatch]);
 
     let handleChange = (e) => {
         const { name, value } = e.target

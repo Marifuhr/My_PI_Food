@@ -1,0 +1,58 @@
+body{
+    margin:0;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(69, 61, 61);
+    position: relative;
+}
+video {
+    position:fixed;
+    max-width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 2;
+}
+
+.overlay {
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 800;
+    background: rgba(0, 0, 0, 0.575);
+}
+.title{
+   
+    z-index: 2000;
+    position: fixed;
+    top: 5%;
+    left:9%;
+    color: #d5987e;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 14px; 
+    text-shadow: 2px 5px black;
+    
+   
+}
+
+
+.imag {
+    margin-top: 630px;
+    height: 60px;
+    width: 60px;
+    position: relative;
+    top: -250px
+}
+.imag:hover {
+    height:70px;
+    width: 70px;
+    transition: all 0.3s ease-out;
+    background-color: #d5987e3c;
+}
+
+

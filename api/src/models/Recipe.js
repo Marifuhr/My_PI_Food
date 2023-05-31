@@ -10,13 +10,13 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true,
     },
-    title: {  
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
     image: {
       type: DataTypes.STRING,
-      
+
     },
     summary: {
       type: DataTypes.STRING,
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.STRING,
     },
-    
-  },{ timestamps: false });  
+
+  }, { timestamps: false });
 };
 

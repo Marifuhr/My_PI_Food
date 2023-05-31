@@ -11,6 +11,7 @@ import {
     filterByTypeDiet,
     orderByAlphabet,
     orderByScore,
+    filterBySource,
 } from "../redux/actions"
 import img1 from '../styles/Star.png'
 import img2 from '../styles/Star2.png'
@@ -59,7 +60,12 @@ function Home(props) {
         setPage(1);
         setOrder(e.target.value);
     }
+    let handleFilterBySource = (e) => {
+        e.preventDefault();
+        props.filterBySource(e.target.value);
+        setPage(1);
 
+    }
     let handleOrderByScore = (e) => {
         e.preventDefault();
         props.orderByScore(e.target.value);
@@ -118,7 +124,16 @@ function Home(props) {
                         <option value="ztoa">Z to A</option>
                     </select>
                 </div>
-
+                <div className={style.box}>
+                    <select
+                        defaultValue="Filter by Source"
+                        onChange={(e) => handleFilterBySource(e)}
+                    >
+                        <option disabled>Filter by Source</option>
+                        <option value="string">Created by user</option>
+                        <option value="api">API</option>
+                    </select>
+                </div>
 
                 <div className={style.box}>
                     <select
@@ -212,6 +227,7 @@ function mapDispatchToProps(dispatch) {
         filterByTypeDiet: (payload) => dispatch(filterByTypeDiet(payload)),
         orderByAlphabet: (payload) => dispatch(orderByAlphabet(payload)),
         orderByScore: (payload) => dispatch(orderByScore(payload)),
+        filterBySource: (payload) => dispatch(filterBySource(payload)),
     }
 }
 

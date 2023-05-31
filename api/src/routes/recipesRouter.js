@@ -82,7 +82,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const { title, summary, score, healthScore, image, steps, diets } = req.body;
     try {
-       
+
         const newRecipe = await Recipe.create({
             title,
             image,
@@ -92,7 +92,7 @@ router.post('/', async (req, res) => {
             steps,
         });
         console.log(newRecipe);
-      
+
         const dietDB = await Diets.findAll({
             where: {
                 name: {
@@ -100,7 +100,7 @@ router.post('/', async (req, res) => {
                 },
             },
         });
-        
+
         const ids = dietDB.map(el => el.id)
         console.log(ids);
         await newRecipe.addDiets(ids)

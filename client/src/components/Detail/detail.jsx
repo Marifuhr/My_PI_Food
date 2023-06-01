@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getRecipeDetails } from './../redux/actions';
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ export default function Detail() {
     const receta = useSelector((state) => state.recipeDetails)
     const dispatch = useDispatch();
     const { id } = useParams();
-    // const [estado, setEstado] = useState(false)
+    const [estado, setEstado] = useState(false)
 
     const dieta = () => {
         if (id.includes("-")) {
@@ -28,6 +28,7 @@ export default function Detail() {
             <Link to="/home" className={style.btn}>Back</Link>
             <>
                 <h1 className={style.title}>{receta.title}</h1>
+                <h4 className={style.id}>{receta.id}</h4>
                 <p className={style.recipe} id="recipe" dangerouslySetInnerHTML={{ __html: receta.summary }}></p>
                 <img className={style.img} src={receta.image} alt={receta.title} />
             </>

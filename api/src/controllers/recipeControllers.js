@@ -47,7 +47,7 @@ const get_ApiID = async (id) => {
     const apiID = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
 
     const detail = apiID.data.results.find(el => el.id === Number(id))
-
+    console.log(detail);
 
     const { title, summary, healthScore, image, analyzedInstructions, diets } = detail;
 
@@ -57,7 +57,9 @@ const get_ApiID = async (id) => {
         summary,
         healthScore,
         image,
-        steps: analyzedInstructions[0].steps.map(el => el.step !== undefined && el.step),
+        steps: analyzedInstructions.length > 0 &&
+            analyzedInstructions[0].steps.map((s) => s.step),
+         //analyzedInstructions[0].steps.map(el => el.step !== undefined && el.step),
         diets,
     }
     console.log(recipeDetail);

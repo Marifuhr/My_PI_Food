@@ -18,13 +18,6 @@ function App() {
       <div className='App'>
         <Route
           render={({ location }) => (
-            // <TransitionGroup className="container">
-            //   <CSSTransition
-            //     appear={true}
-            //     key={location.key}
-            //     timeout={{ enter: 400, exit: 200 }}
-            //     classNames="fade"
-            //   >
                 <div className="inner">
                   <Switch key={location.key} location={location}>
                     <Route exact path={'/'} component={LandingPage}></Route>
@@ -34,8 +27,7 @@ function App() {
                     <Redirect to="/"></Redirect>
                   </Switch>
                 </div>
-            //   {/* </CSSTransition>
-            // </TransitionGroup> */}
+        
           )}
         />
       </div>

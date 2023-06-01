@@ -60,6 +60,10 @@
     display: block;
     margin: 0 auto;
 }
+.id{
+    justify-content: center;
+    color: black;
+}
 /* .steps{
 font-size: 20px;
     flex-direction: column;

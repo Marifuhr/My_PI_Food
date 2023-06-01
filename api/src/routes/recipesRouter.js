@@ -29,7 +29,8 @@ router.get('/', async (req, res) => {
                         score: r.score,
                         healthScore: r.healthScore,
                         steps: r.steps,
-                        diets: r.diets ? r.diets : r.diets.map(r => r.name)
+                        diets: r.diets && r.diets 
+                        // : r.diets.map(r => r.name)
                     }
                 })
                 return res.status(200).send(recipes);
@@ -46,7 +47,8 @@ router.get('/', async (req, res) => {
                     score: r.score,
                     healthScore: r.healthScore,
                     steps: r.steps,
-                    diets: r.diets ? r.diets : r.diets.map(r => r.name),
+                    diets: r.diets && r.diets 
+                    // : r.diets.map(r => r.name),
                 }
             })
             return res.status(200).send(recipes)

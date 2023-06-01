@@ -43,13 +43,16 @@ export function getRecipeByName(name) {
 
 export function getRecipeDetails(id) {
     return async function (dispatch) {
-
-        const response = (await axios.get(`${URL}/recipes/${id}`)).data;
-        console.log(response)
-        return dispatch({
-            type: GET_RECIPE_DETAILS,
-            payload: response,
-        });
+        try {
+            const response = (await axios.get(`${URL}/recipes/${id}`));
+            console.log(response)
+            return dispatch({
+                type: GET_RECIPE_DETAILS,
+                payload: response.data,
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 }
 

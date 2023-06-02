@@ -31,6 +31,7 @@ export default function Card(props) {
 
                 <div>
                     <h1 className={style.name}>{title}</h1>
+                    <h5>{id}</h5>
                     <h3 className={style.h3}>Types of diets: </h3>
                     {
                         diets?.map(d => {

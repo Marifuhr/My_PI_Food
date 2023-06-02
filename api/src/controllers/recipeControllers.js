@@ -4,10 +4,10 @@ const { Diets, Recipe } = require("../db");
 const { API_KEY, URL_SPOONACULAR } = process.env;
 
 const get_Api = async () => {
-    // const response = await axios.get(
-    //     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+    const response = await axios.get(
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
-    const response = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
+    // const response = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
     const infoApi = response.data.results.map((r) => {
         return {
             id: r.id,
@@ -43,8 +43,8 @@ const get_DataBase = async () => {
 };
 
 const get_ApiID = async (id) => {
-    // const apiID = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
-    const apiID = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
+    const apiID = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
+    // const apiID = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
 
     const detail = apiID.data.results.find(el => el.id === Number(id))
     console.log(detail);
@@ -59,7 +59,7 @@ const get_ApiID = async (id) => {
         image,
         steps: analyzedInstructions.length > 0 &&
             analyzedInstructions[0].steps.map((s) => s.step),
-         //analyzedInstructions[0].steps.map(el => el.step !== undefined && el.step),
+        //analyzedInstructions[0].steps.map(el => el.step !== undefined && el.step),
         diets,
     }
     console.log(recipeDetail);

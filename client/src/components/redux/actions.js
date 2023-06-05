@@ -44,7 +44,7 @@ export function getRecipeByName(name) {
 export function getRecipeDetails(id) {
     return async function (dispatch) {
         try {
-            const response = (await axios.get(`${URL}/recipes/${id}`));
+            const response = await axios.get(`${URL}/recipes/${id}`);
             console.log(response)
             return dispatch({
                 type: GET_RECIPE_DETAILS,

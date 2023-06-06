@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
                         score: r.score,
                         healthScore: r.healthScore,
                         steps: r.steps,
-                        diets: r.diets && r.diets 
+                        diets: r.diets && r.diets
                         // : r.diets.map(r => r.name)
                     }
                 })
@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
                     score: r.score,
                     healthScore: r.healthScore,
                     steps: r.steps,
-                    diets: r.diets && r.diets 
+                    diets: r.diets && r.diets
                     // : r.diets.map(r => r.name),
                 }
             })

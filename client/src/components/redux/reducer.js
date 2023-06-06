@@ -61,7 +61,7 @@ export default function rootReducer(state = initialState, action) {
         case ORDER_BY_ALPHABET:
             let sortByAlphabet = [...state.showedRecipes];
             sortByAlphabet =
-                action.payload === "atoz"  //(de la A a la Z)
+                action.payload === "atoz"  
                     ? state.showedRecipes.sort(function (a, b) {
                         if (a.title.toLowerCase() > b.title.toLowerCase()) return 1;
                         if (a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -79,13 +79,13 @@ export default function rootReducer(state = initialState, action) {
 
         case FILTER_BY_SOURCE:
             const { id } = action;
-            //const isNumeric = !isNaN(id);
+           
             const allRecipes1 = state.allRecipes;
             const statusFiltered2 =
                 action.payload === "Filter by Source"
                     ? allRecipes1.filter((el) => typeof el.id === "string")
                     : allRecipes1.filter((el) => typeof el.id !== "number");
-            //console.log(statusFiltered2);
+         
             return {
                 ...state,
                 showedRecipes:

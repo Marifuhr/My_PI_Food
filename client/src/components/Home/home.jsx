@@ -15,7 +15,7 @@ import {
 } from "../redux/actions"
 import img1 from '../styles/Star.png'
 import img2 from '../styles/Star2.png'
-// import logo from 
+
 let prevId = 1;
 
 function Home(props) {
@@ -23,7 +23,7 @@ function Home(props) {
 
     const [/* order */, setOrder] = useState('')
 
-    // Lógica para mostrar 9 recetas por página
+  
     const [page, setPage] = useState(1);
     const recipesPage = 9;
     const numberOfRecipes = page * recipesPage;
@@ -36,8 +36,6 @@ function Home(props) {
 
     useEffect(() => {
         props.getFood();
-        // La siguiente línea es para quitar un warning molesto de la consola.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.getFood]);
 
     let handleClick = (e) => {
@@ -45,7 +43,7 @@ function Home(props) {
         props.getFood();
         setPage(1);
         setOrder('')
-        window.location.reload();  // Si quiero recargar la página y limpiar todos los select, esta es una opción.
+        window.location.reload();
     }
 
     let handleFilterByTypeDiet = (e) => {

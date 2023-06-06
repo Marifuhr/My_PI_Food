@@ -19,7 +19,7 @@ hr {
 }
 
 .actual {
-    color: white;
+    color: rgb(10, 9, 9);
 }
 
 .btn {
@@ -110,8 +110,9 @@ hr {
 }
 
 .load {
-    color: white;
+    color: rgb(55, 47, 47);
     padding: 100px;
+    font-size: 20px;
 }
 
 

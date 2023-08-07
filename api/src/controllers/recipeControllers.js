@@ -4,9 +4,9 @@ const { Diets, Recipe } = require("../db");
 const { API_KEY, URL_SPOONACULAR } = process.env;
 
 const get_Api = async () => {
-    const response = await axios.get(`${URL_SPOONACULAR}/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
+    //const response = await axios.get(`${URL_SPOONACULAR}/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
     // `${URL_SPOONACULAR}/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
-    // const response = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
+    const response = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
     const infoApi = response.data.results.map((r) => {
         return {
             id: r.id,
@@ -42,8 +42,8 @@ const get_DataBase = async () => {
 };
 
 const get_ApiID = async (id) => {
-    const apiID = await axios.get(`${URL_SPOONACULAR}/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
-    // const apiID = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
+    //const apiID = await axios.get(`${URL_SPOONACULAR}/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
+    const apiID = await axios.get(`https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5`)
     // (`${URL_SPOONACULAR}/recipes/${id}/information?apiKey=${API_KEY}`)
     const detail = apiID.data.results.find(el => el.id === Number(id))
     console.log(detail);

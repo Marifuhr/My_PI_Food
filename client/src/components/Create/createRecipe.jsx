@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
-import { Link, /* Redirect */ useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import { createRecipe, getDiets } from "../redux/actions"
 import style from './createRecipe.module.css';
 import { validate } from '../validate'
@@ -191,7 +191,7 @@ function CreateRecipe(props) {
                                 dietas.map(el => <option key={el.id} value={el.name}>{el.name}</option>)
                             }
                         </select>
-                        {/* {!errors.diets ? null : <p className={style.err}>{errors.diets}</p>} */}
+                        
                     </div>
                     <ul>
                         {

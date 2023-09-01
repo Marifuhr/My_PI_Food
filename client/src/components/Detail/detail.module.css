@@ -13,7 +13,7 @@
 
 
 .div {
-    /* display:contents; */
+    
     flex-direction:unset;
     color: white;
     background-color: rgba(58, 52, 52, 0.572);
